@@ -2,6 +2,29 @@ from datetime import datetime
 from .db import db
 
 
+class PaymentDeliveryOrder(db.Document):
+    delivery_order_id = db.StringField(required=True)
+    payment_mode = db.StringField()
+    transaction_status =  db.BooleanField()
+    currency = db.StringField()
+    amount_paid =  db.FloatField()
+    created_at = db.DateTimeField(auto_now_add=True, default=datetime.now)
+
+    meta = {
+        "ordering" : ["-created_at"]
+    }
+class Delivery(db.Document):
+    delivery_id = db.StringField(required=True)
+    order_id = db.StringField()
+    deliver_staff_name = db.StringField()
+    location = db.StringField()
+    status = db.BooleanField()
+    created_at = db.DateTimeField(auto_now_add=True, default=datetime.now)
+
+    meta = {
+        "ordering" : ["-created_at"]
+    }
+
 class CustomOrder(db.Document):
     product_category_id = db.StringField(required=True)
     product_sub_category_id = db.StringField()
@@ -28,7 +51,7 @@ class Measurement(db.Document):
     leg_length = db.IntField()
     size = db.IntField()
     other_info = db.StringField()
-    created_at = db.DateTimeField()
+    created_at = db.DateTimeField(auto_now_add=True, default=datetime.now)
 
     meta = {
         "ordering" : ["-created_at"]
@@ -72,7 +95,7 @@ class ProductSubCategory(db.Document):
 class OrderProduct(db.Document):
     product_id = db.IntField(required=True)
     status = db.StringField()
-    added_price = db.IntField()
+    added_price =  db.BooleanField()
     quantity = db.IntField()
     created_at = db.DateTimeField(auto_now_add=True, default=datetime.now)
 
@@ -82,7 +105,7 @@ class OrderProduct(db.Document):
 
 
 class Ordered(db.Document):
-    ordered_product_id = db.IntField(required=True)
+    ordered_product_id = db.StringField(required=True)
     ordered_date = db.DateTimeField(auto_now_add=True, default=datetime.now)
     ordered = db.BooleanField()
     created_at = db.DateTimeField(auto_now_add=True, default=datetime.now)
@@ -93,7 +116,7 @@ class Ordered(db.Document):
 
 
 class OrderedReview(db.Document):
-    ordered_id = db.IntField(required=True)
+    ordered_id =db.StringField(required=True)
     rating = db.IntField()
     review = db.StringField()
     return_request = db.BooleanField()
