@@ -1,11 +1,11 @@
 import datetime
 from flask import Response, jsonify, request
-from ..database.models import ProductCategory
+from ...database.models import ProductCategory
 from flask_restful import Resource
 from mongoengine.errors import (
     FieldDoesNotExist, DoesNotExist,ValidationError, InvalidQueryError
 )
-from ..utility.errors import (
+from ...utility.errors import (
     SchemaValidationError, InternalServerError, UpdatingProductCategoryError,
     DeletingProductCategoryError, ProductCategoryNotExistsError,FieldDoesNotExistError
 )
@@ -47,7 +47,7 @@ class ProductCategoriesApi(Resource):
 
 
 
-class PrdouctCategoryApi(Resource):
+class ProductCategoryApi(Resource):
     def get(self, id):
 
 
@@ -89,7 +89,8 @@ class PrdouctCategoryApi(Resource):
 
 
 
-class PrdouctCategorySearchApi(Resource):
+class ProductCategorySearchApi(Resource):
+
     def get(self):
         category_name = request.args.get("category_name")
         created_at = request.args.get("created_at")

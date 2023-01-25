@@ -2,7 +2,6 @@ from datetime import datetime
 from .db import db
 
 
-
 class Product(db.Document):
     product_name = db.StringField(required=True)
     sale_price = db.IntField()

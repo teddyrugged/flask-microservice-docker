@@ -1,8 +1,14 @@
 import datetime
 from flask import Response, jsonify, request
+from ...database.models import ProductSubCategory 
 from flask_restful import Resource
-
-from scr.database.models import ProductSubCategory
+from mongoengine.errors import (
+    FieldDoesNotExist, DoesNotExist,ValidationError, InvalidQueryError
+)
+from ...utility.errors import (
+    SchemaValidationError, InternalServerError, UpdatingProductCategoryError,
+    DeletingProductCategoryError, ProductCategoryNotExistsError,FieldDoesNotExistError
+)
 
 
 class ProductSubCategoriesApi(Resource):

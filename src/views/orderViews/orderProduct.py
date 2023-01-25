@@ -1,11 +1,11 @@
 from flask import Response, jsonify, request,Flask
 from flask_restful import Resource,Api
-from ..database.models import OrderProduct
+from ...database.models import OrderProduct
 import datetime
 from mongoengine.errors import (
     FieldDoesNotExist, DoesNotExist,ValidationError, InvalidQueryError
 )
-from ..utility.errors import (
+from ...utility.errors import (
     SchemaValidationError, InternalServerError, UpdatingProductCategoryError,
     DeletingProductCategoryError, ProductCategoryNotExistsError,FieldDoesNotExistError
 )
